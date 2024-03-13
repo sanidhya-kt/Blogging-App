@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('./partials/head') %>
+  <style>
+    .card-img-top {
+      height: 200px; /* Fixed height for all images */
+      object-fit: cover; /* This will cover the area without stretching the image */
+    }
+    .card-title {
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* Limits the title to 2 lines */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      height: 3em; /* Adjust based on line height and font size */
+    }
+    .card-body {
+      height: 150px; /* Adjust based on your content to ensure consistency */
+    }
+    .card {
+      height: 100%; /* Makes sure all cards in the row are of equal height */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Aligns the action button to the bottom */
+    }
+    
+  </style>
+  <title>Home Page</title>
+</head>
+<body>
+  <%- include('./partials/navbar') %>
+
+  <div class="container mt-4">
+    <div class="row row-cols-3">
+      <% blogs.forEach(blog => { %>
+      <div class="col mb-4">
+        <div class="card m-2" style="width: 18rem">
+          <img src="<%= blog.coverImageURL %>" class="card-img-top" alt="<%= blog.title %>"/>
+          <div class="card-body">
+            <h5 class="card-title"><%= blog.title %></h5>
+            <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <%- include('./partials/script') %>
+</body>
+</html>
